@@ -1,47 +1,36 @@
-import axios from "axios";
+
 import style from "board/style/board-form.module.css";
 import React,{ useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBoard } from "../../redux/reducers/board.reducer";
 
 export default function BoardhtmlForm(){
-    const[inputs,setInputs]=useState({})
-
-    const handleChange=(e)=>{
-        e.preventDefault()
-        const{value,name}=e.target;
-        setInputs({
-            ...inputs,[name]:value})
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:5000/api/board/write',inputs)
-        .then(res=>{
-            const form=res.data
-            document.getElementById('result-span').innerHTML=`
-            <h3> 결과 : ${JSON.stringify(form)}</h3>`
-        })
-        .catch(err=>alert(err))
-    }
-
+    const[value,setValue] = useState('')
+    const dispatch =useDispatch()
 return (<>
     <h1>게시글 등록</h1>
     <div className={style.container}>
-        <htmlForm action="">
+        <form onSubmit={e => {
+                e.preventDefault()
+                alert('value?'+value)
+                if(value) dispatch(addBoard({write:value}))
+      }}>
         <div className={style.row}>
             <div className={style.col25}>
-            <label className={style.label} htmlFor="passengerId">게시글 작성자 ID</label>
+            <label className={style.label} htmlFor="passengerId">글제목</label>
             </div>
             <div className={style.col75}>
-            <input type="text" className={style.inputText}
-            id="passengerId" name="passengerId" onChange= {handleChange} placeholder="게시글 작성자 ID 입력"/>
+            <input type="text" className={style.inputText} autoComplete="off" onChange= {e=>setValue(e.target.value)}
+            id="title" name="title"  placeholder="글 제목 입력"/>
             </div>
-        </div>
+        </div>se
         <div className={style.row}>
             <div className={style.col25}>
             <label htmlFor="name">게시글 작성자 이름</label>
             </div>
             <div className={style.col75}>
-            <input type="text" className={style.inputText}
-            id="name" name="name" onChange= {handleChange} placeholder="게시글 작성자 이름 입력"/>
+            <input type="text" className={style.inputText} autoComplete="off" onChange= {e=>setValue(e.target.value)}
+            id="name" name="name" placeholder="게시글 작성자 이름 입력"/>
             </div>
         </div>
         <div className={style.row}>
@@ -49,7 +38,7 @@ return (<>
             <label htmlFor="team">응원팀</label>
             </div>
             <div className={style.col75}>
-            <select id="teamId" name="teamId" onChange= {handleChange}>
+            <select id="teamId" name="teamId" autoComplete="off" onChange= {e=>setValue(e.target.value)}>
                 <option value="">응원팀 선택</option>
                 <option value="K09">Fc seoul</option>
                 <option value="K02">Suwon Samseong blue wings</option>
@@ -62,17 +51,17 @@ return (<>
             <label htmlFor="subject">게시글 내용</label>
             </div>
             <div className={style.col75}>
-            <input type="textarea"  id="subject" name="subject" onChange= {handleChange} style={{height:200 + "px"}}></input>
+            <input type="textarea"  id="subject" name="subject" autoComplete="off" onChange= {e=>setValue(e.target.value)} style={{height:200 + "px"}}></input>
             </div>
         </div>
         <br/>
         <div className={style.row}>
             <input type="submit" className={style.inputSubmit}
-            onClick={handleSubmit} value="Submit"/>
+            value="Submit"/>
         </div>
         <button onClick={ () => {history.back('/'); } } >뒤로가기</button>
         <div><span id="result-span">결과</span></div>
-        </htmlForm>
+        </form>
         </div>
 </>)
 }

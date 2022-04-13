@@ -5,13 +5,13 @@ export default function Nav(){
     return (
         <nav className={styles.nav}>
         <ul>
-        <li className={styles.li}> <Link href='/'>Home</Link> </li>
-        <li className={styles.li}> <Link href='/common/linktolink/admin-link'>Sign</Link> </li>
-        <li className={styles.li}> <Link href='/admin/dashboard'>DashBoard</Link> </li>
-        <li className={styles.li}> <Link href='/common/linktolink/board-link'>Board</Link> </li>
-        <li className={styles.li}> <Link href='/todo/todo-list'>Todo</Link> </li>
-        <li className={styles.li}> <Link href='/common/linktolink/game-link'>Game</Link> </li>
-        <li className={styles.li}> <Link href='/common/linktolink/basic-link'>Basic</Link> </li>
+        <li className={styles.li}> <Link href='/'>홈</Link> </li>
+        <li className={styles.li}> <Link href='/common/linktolink/admin-link'>로그인</Link> </li>
+        <li className={styles.li}> <Link href='/admin/dashboard'>대시보드</Link> </li>
+        <li className={styles.li}> <Link href='/common/linktolink/board-link'>게시글</Link> </li>
+        <li className={styles.li}> <Link href='/common/linktolink/todo-link'>스케쥴</Link> </li>
+        <li className={styles.li}> <Link href='/common/linktolink/game-link'>게임</Link> </li>
+        <li className={styles.li}> <Link href='/common/linktolink/basic-link'>베이직</Link> </li>
         </ul>
         </nav>
     );
