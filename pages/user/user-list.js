@@ -13,7 +13,7 @@ const Table = ({ columns, colspan, data}) => {
                 <th key = {column} className={style.td}>{column}</th>
             ))}
         </tr>
-        </thead>
+        </thead> 
         <tbody>
                 { data.length == 0 ?<tr className={style.tr}>
                                     <td colSpan={colspan} className={style.td}>데이터가없습니다</td>
