@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux'
 // import Task from './styles/Task.scss'
 import Image from "next/image";
-import { addTask } from '../../redux/reducers/todo.reducer'
+import { addTask } from '../../redux/reducers/todoReducer'
 export default function AppTasks() {
  const [value,setValue] = useState('');
     const dispatch = useDispatch()

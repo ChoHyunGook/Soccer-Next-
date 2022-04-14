@@ -2,5 +2,11 @@
     "compilerOptions": {
         "baseUrl": "./pages"
     },
-    "include": ["pages"]
+    "include": [
+        "pages/**/*.js",
+        "redux/**/*.js"],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
 }
