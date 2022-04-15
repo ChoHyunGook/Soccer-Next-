@@ -1,45 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit"
+// parameter
 
-
-
-//payload
-export interface JoinPayload{
-    data:{
-        user: {
-            userid: String;
-            password: String;
-            email: String;
-            name: String;
-            phone: String;
-            birth: String;
-            address: String;
+// payload
+export interface UserType{
+    
+            userid: string;
+            password: string;  
+            email: string;
+            name: string;  
+            phone: string;
+            birth: string;
+            address: string;
         }
-    }
-}
-//state
+
+// state
 export interface UserState{
-     userLoading: boolean;
-     userData: any
-     error:any
-     token: null
+    Loading: boolean;
+    data: UserType[];
+    error: any;
+    
 }
+
+
 const initialState: UserState = {
-    userLoading: false,
-    userData: null,
-    error: null,
-    token: null
+    Loading: false,
+    data: [],
+    error: null
 }
+
 const userSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
-        joinRequest(state, action){ state.userLoading = true, state.error = null},
-        joinSuccess(state, action){ state.userLoading = false, state.error = action.payload},
-        joinFailure(state, action){ state.userLoading = false, state.error = action.payload}
+        joinRequest(state: UserState, payload){
+             alert('진행2.리듀서내부')
+             state.Loading = true;
+            },
+        joinSuccess(state: UserState, {payload}){
+            state.data = [...state.data, payload]
+            state.Loading = false;
+        },
+        joinFailure(state: UserState, {payload}){ 
+            state.data = payload; 
+            state.Loading = false;
+        }
     }
 })
-const { reducer,actions }=userSlice
-export const {
-     joinRequest,joinSuccess,joinFailure
-} = actions
+const { reducer, actions } = userSlice
+export const userActions = actions
 export default reducer
