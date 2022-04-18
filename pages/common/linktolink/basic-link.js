@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "common/style/Nav.module.css";
 
-export default function MyBasic(){
+export default function BasicLink(){
     return (
         <nav>
         <ul>

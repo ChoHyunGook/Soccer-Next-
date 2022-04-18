@@ -1,6 +1,10 @@
 import {takeLatest ,all, put} from 'redux-saga/effects'
-import { watchJoin } from './userSaga.ts'
+import { articleJoin } from './articleSaga.ts'
+import { todoJoin } from './todoSaga.ts'
+import { userJoin } from './userSaga.ts'
+
+
 
 export default function* rootSaga(){
-     yield all([watchJoin()])
+     yield all([userJoin(), articleJoin(),todoJoin()])
 }

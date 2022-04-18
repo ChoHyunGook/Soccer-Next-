@@ -28,6 +28,6 @@ function* join(user: UserJoinType){
          yield put(userActions.joinFailure(error)) 
     }
 }
-export function* watchJoin(){
+export function* userJoin(){
     yield takeLatest(userActions.joinRequest, join)
 }

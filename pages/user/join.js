@@ -21,9 +21,7 @@ export default function  Join(){
             setUser({
                 userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
             })
-        }
-    }
-    >
+        }}>
     <div>
     <label><b>사용자ID</b></label>
     <input type="text" name='userid' onChange={handleChange} /><br />

@@ -1,4 +1,8 @@
 .nav {
+    margin: 0 auto;
+    font-size: 15px;
+    width: 900px;
+    border: 1px solid black;
     display: flex;
     justify-content: space-between;
     background-color: rgb(136, 225, 98);
@@ -7,3 +11,4 @@
     display: inline;
     margin-left: 40px;
   }
+ 

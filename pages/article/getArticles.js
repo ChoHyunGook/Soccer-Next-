@@ -1,4 +1,4 @@
-import style from "board/style/board-list.module.css";
+import style from "article/style/board-list.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -34,8 +34,8 @@ export default function BoardList(){
     const columns =["passengerId","name","teamId","subject"]
     const [data,setData]=useState([])
     useEffect(()=>{
-        axios.get('http://localhost:5000/api/board/list').then(res=>{
-            setData(res.data.boards)
+        axios.get('http://localhost:5000/api/article/getArticles').then(res=>{
+            setData(res.data.articles)
         }).catch(err=>{})
     },[])
     return (<>

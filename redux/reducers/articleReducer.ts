@@ -2,46 +2,47 @@ import { createSlice } from "@reduxjs/toolkit"
 // parameter
 
 // payload
-export interface TodoType{
+export interface ArticleType{
     
-               userid: '';
-               task: '';
-               completed: ''
+     passengerId: string;
+     name: string;  
+     teamId: string;
+     subject: string;
         }
 
 // state
-export interface TodoState{
+export interface ArticleState{
     Loading: boolean;
-    data: TodoType[];
+    data: ArticleType[];
     error: any;
     
 }
 
 
-const initialState: TodoState = {
+const initialState: ArticleState = {
     Loading: false,
     data: [],
     error: null
 }
 
-const todoSlice = createSlice({
-    name: 'todos',
+const articleSlice = createSlice({
+    name: 'articles',
     initialState,
     reducers: {
-        joinRequest(state: TodoState, payload){
+        joinRequest: (state: ArticleState, payload)=>{
              alert('진행2.리듀서내부')
              state.Loading = true;
             },
-        joinSuccess(state: TodoState, {payload}){
+        joinSuccess(state: ArticleState, {payload}){
             state.data = [...state.data, payload]
             state.Loading = false;
         },
-        joinFailure(state: TodoState, {payload}){ 
+        joinFailure(state: ArticleState, {payload}){ 
             state.data = payload; 
             state.Loading = false;
         }
     }
 })
-const { reducer, actions } = todoSlice
-export const todoActions = actions
+const { reducer, actions } = articleSlice
+export const articleActions = actions
 export default reducer

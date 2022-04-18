@@ -1,35 +1,46 @@
 
-import style from "board/style/board-form.module.css";
+import style from "article/style/board-form.module.css";
 import React,{ useState } from "react";
 import { useDispatch } from "react-redux";
-import { addBoard } from "../../redux/reducers/boardReducer.ts";
+import { articleActions } from "../../redux/reducers/articleReducer.ts";
 
-export default function BoardhtmlForm(){
-    const[value,setValue] = useState('')
-    const dispatch =useDispatch()
+export default function addArticle(){
+    const [article, setArticle] =useState({
+        passengerId:'', name:'', teamId:'', subject:''
+    })
+    const dispatch = useDispatch()
+    const handleChange = e =>{
+        e.preventDefault()
+        const{name, value} = e.target;
+        setArticle({...article,[name]: value})
+    }
 return (<>
     <h1>게시글 등록</h1>
     <div className={style.container}>
-        <form onSubmit={e => {
+        <form onSubmit={
+            e => {
                 e.preventDefault()
-                alert('value?'+value)
-                if(value) dispatch(addBoard({write:value}))
+                alert('진행1 : 게시글 클릭')
+                dispatch(articleActions.joinRequest(article))
+                setArticle({
+                    passengerId:'',name:'',teamId:'',subject:''
+                })
       }}>
         <div className={style.row}>
             <div className={style.col25}>
             <label className={style.label} htmlFor="passengerId">글제목</label>
             </div>
             <div className={style.col75}>
-            <input type="text" className={style.inputText} autoComplete="off" onChange= {e=>setValue(e.target.value)}
+            <input type="text" className={style.inputText} autoComplete="off" onChange= {handleChange}
             id="title" name="title"  placeholder="글 제목 입력"/>
             </div>
-        </div>se
+        </div>
         <div className={style.row}>
             <div className={style.col25}>
             <label htmlFor="name">게시글 작성자 이름</label>
             </div>
             <div className={style.col75}>
-            <input type="text" className={style.inputText} autoComplete="off" onChange= {e=>setValue(e.target.value)}
+            <input type="text" className={style.inputText} autoComplete="off" onChange= {handleChange}
             id="name" name="name" placeholder="게시글 작성자 이름 입력"/>
             </div>
         </div>
@@ -38,7 +49,7 @@ return (<>
             <label htmlFor="team">응원팀</label>
             </div>
             <div className={style.col75}>
-            <select id="teamId" name="teamId" autoComplete="off" onChange= {e=>setValue(e.target.value)}>
+            <select id="teamId" name="teamId" autoComplete="off" onChange= {handleChange}>
                 <option value="">응원팀 선택</option>
                 <option value="K09">Fc seoul</option>
                 <option value="K02">Suwon Samseong blue wings</option>
@@ -51,7 +62,7 @@ return (<>
             <label htmlFor="subject">게시글 내용</label>
             </div>
             <div className={style.col75}>
-            <input type="textarea"  id="subject" name="subject" autoComplete="off" onChange= {e=>setValue(e.target.value)} style={{height:200 + "px"}}></input>
+            <input type="textarea"  id="subject" name="subject" autoComplete="off" onChange= {handleChange} style={{height:200 + "px"}}></input>
             </div>
         </div>
         <br/>
