@@ -17,7 +17,6 @@ interface UserJoinSuccessType{
     }
 }
 
-
 function* join(user: UserJoinType){
     try{
         alert(' *** saga내부 join 성공 *** '+ JSON.stringify(user))
