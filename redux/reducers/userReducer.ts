@@ -33,7 +33,6 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         joinRequest(state: UserState, payload){
-             alert('진행2.리듀서내부')
              state.Loading = true;
             },
         joinSuccess(state: UserState, {payload}){
@@ -43,7 +42,19 @@ const userSlice = createSlice({
         joinFailure(state: UserState, {payload}){ 
             state.data = payload; 
             state.Loading = false;
-        }
+        },
+        loginRequest(state: UserState, payload){
+            alert('진행2.로그인 리듀서 내부')
+            state.Loading = true;
+           },
+        loginSuccess(state: UserState, {payload}){
+           state.data = [...state.data, payload]
+           state.Loading = false;
+       },
+       loginFailure(state: UserState, {payload}){ 
+           state.data = payload; 
+           state.Loading = false;
+       },
     }
 })
 const { reducer, actions } = userSlice
